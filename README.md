@@ -1,5 +1,6 @@
 # teamtasker_microservices
-TeamTasker is a scalable, microservices-driven task and project management system built using React (frontend) and Django microservices (backend)  It supports authentication, task assignments, real-time notifications, role-based access, and more — designed to be extensible with AI and deployable using Docker.
+
+TeamTasker is a scalable, microservices-driven task and project management system built using React (frontend) and Django microservices (backend) It supports authentication, task assignments, real-time notifications, role-based access, and more — designed to be extensible with AI and deployable using Docker.
 
 🚀 Features
 
@@ -26,25 +27,16 @@ TeamTasker is a scalable, microservices-driven task and project management syste
 🛠️ Tech Stack
 
 Frontend:
-
-React 18 + Vite
-
+React
 Axios, React Router
-
-Tailwind CSS
-
-Zustand (or Redux Toolkit)
+Plain CSS
+Redux Toolkit
 
 Backend:
-
 Django + Django REST Framework
-
 PostgreSQL (per service)
-
 Celery + Redis + RabbitMQ
-
 JWT + Role-based Access
-
 Django Channels (for chat)
 
 Architecture:
