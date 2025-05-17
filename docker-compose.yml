@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  postgres:
+    image: docker.io/postgres:latest
+    container_name: shared-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
+    networks:
+      - shared-network
+
+  pgadmin:
+    image: docker.io/dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - shared-network
+
+  apigateway:
+    build:
+      context: ./backend/apigateway
+    container_name: apigateway
+    volumes:
+      - ./backend/apigateway:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_SETTINGS_MODULE=apigateway.settings
+
+volumes:
+  postgres-data:
+
+networks:
+  shared-network:
+    driver: bridge

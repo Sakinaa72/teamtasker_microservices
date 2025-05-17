@@ -27,12 +27,14 @@ TeamTasker is a scalable, microservices-driven task and project management syste
 🛠️ Tech Stack
 
 Frontend:
+
 React
 Axios, React Router
 Plain CSS
 Redux Toolkit
 
 Backend:
+
 Django + Django REST Framework
 PostgreSQL (per service)
 Celery + Redis + RabbitMQ
