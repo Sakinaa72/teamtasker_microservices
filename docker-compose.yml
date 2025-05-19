@@ -43,6 +43,21 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=apigateway.settings
 
+  authservice:
+    build:
+      context: ./backend/authservice
+    container_name: authservice
+    volumes:
+      - ./backend/authservice:/app
+    ports:
+      - "8001:8001"
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_SETTINGS_MODULE=authservice.settings
+
 volumes:
   postgres-data:
 
