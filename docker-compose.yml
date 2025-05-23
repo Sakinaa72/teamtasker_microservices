@@ -58,6 +58,21 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=authservice.settings
 
+  userservice:
+    build:
+      context: ./backend/userservice
+    container_name: userservice
+    volumes: 
+      - ./backend/userservice:/app
+    ports:
+      - "8002:8002"
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_SETTINGS_MODULE=userservice.settings
+
 volumes:
   postgres-data:
 
