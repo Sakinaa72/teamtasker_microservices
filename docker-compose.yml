@@ -73,6 +73,21 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=userservice.settings
 
+  taskservice:
+    build:
+      context: ./backend/taskservice
+    container_name: taskservice
+    volumes:
+      - ./backend/taskservice:/app
+    ports:
+      - "8003:8003"
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_SETTINGS_MODULE=taskservice.settings
+
 volumes:
   postgres-data:
 
